@@ -16,7 +16,7 @@
         "laravel/nova": "*",
         "laravel/tinker": "^2.0",
         "moontoast/math": "1.1.2 as 1.999.999",
-        "phpseclib/bcmath_compat": "^1.0",
+        "phpseclib/bcmath_compat": "1.0.4",
         "phpseclib/phpseclib": "^2.0"
     },
     "repositories": [{
