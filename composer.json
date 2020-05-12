@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
-        "laravel/nova": "*"
+        "laravel/nova": "*",
+        "moontoast/math": "1.1.2 as 1.999.999"
     },
     "repositories": [{
         "type": "path",
