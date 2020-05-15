@@ -24,7 +24,12 @@ class Operator extends Resource
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = '';
+
+    public function title()
+    {
+        return $this->name;
+    }
 
     /**
      * The columns that should be searched.
@@ -80,7 +85,7 @@ class Operator extends Resource
         return [
             ID::make()->sortable(),
             BelongsTo::make('Operador', 'user', User::class),
-            Select::make('Tipo de permiso', 'lincence_type')->options([
+            Select::make('Tipo de permiso', 'licence_type')->options([
                 'A' => 'A',
                 'B' => 'B',
                 'C' => 'C',

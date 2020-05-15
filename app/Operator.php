@@ -11,8 +11,15 @@ class Operator extends Model
         'born_date' => 'date'
     ];
 
+    protected $appends = ['name'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->user->name;
     }
 }

@@ -42,9 +42,9 @@ class TypeUser extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
+            //ID::make()->sortable(),
             Text::make('Nombre', 'name')->rules('required'),
-            Text::make('Slug', 'slug')->rules(['required', 'unique']),
+            Text::make('Slug', 'slug')->rules('required'),
             Textarea::make('Descripciòn', 'description')
         ];
     }

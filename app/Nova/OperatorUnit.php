@@ -4,25 +4,25 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Unit extends Resource
+class OperatorUnit extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Unit';
+    public static $model = \App\OperatorUnit::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -30,42 +30,8 @@ class Unit extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'licence_plate', 'model', 'trademark'
+        'id',
     ];
-
-    /**
-     * The logical group associated with the resource.
-     *
-     * @var string
-     */
-    public static $group = 'Logistica';
-
-    /**
-     * Indicates if the resoruce should be globally searchable.
-     *
-     * @var bool
-     */
-    public static $globallySearchable = true;
-
-    /**
-     * Get the displayable label of the resource.
-     *
-     * @return string
-     */
-    public static function label()
-    {
-        return 'Unidades';
-    }
-
-    /**
-     * Get the displayable singular label of the resource.
-     *
-     * @return string
-     */
-    public static function singularLabel()
-    {
-        return 'Unidad';
-    }
 
     /**
      * Get the fields displayed by the resource.
@@ -76,12 +42,9 @@ class Unit extends Resource
     public function fields(Request $request)
     {
         return [
-            // BelongsTo::make('Operador', 'user', User::class)->searchable(),
-            Text::make('Nombre de la unidad', 'name'),
-            Text::make('Placas/Matricula', 'licence_plate')->rules('required'),
-            BelongsTo::make('Tipo de unidad', 'typeUnit', TypeUnit::class),
-            Text::make('Modelo', 'model'),
-            Text::make('Marca', 'trademark'),
+            ID::make()->sortable(),
+            BelongsTo::make('Seleccione operador', 'operator', Operator::class),
+            BelongsTo::make('Seleccione unidad', 'unit', Unit::class)->searchable()
         ];
     }
 

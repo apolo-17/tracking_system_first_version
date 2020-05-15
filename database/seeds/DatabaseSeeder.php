@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UserSeeder::class);
+        $this->call(TypeUserSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(TypeUnitSeeder::class); //In this seeder you will find the creation of units
     }
 }
