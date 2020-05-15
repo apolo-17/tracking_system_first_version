@@ -83,8 +83,9 @@ class Operator extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-            BelongsTo::make('Operador', 'user', User::class),
+            //ID::make()->sortable(),
+            BelongsTo::make('Operador', 'user', User::class)->searchable(),
+            //Select::make('Operador', 'user_id')->options($this->getOperator()),
             Select::make('Tipo de permiso', 'licence_type')->options([
                 'A' => 'A',
                 'B' => 'B',
@@ -99,6 +100,18 @@ class Operator extends Resource
             Text::make('Direccion', 'address'),
             Date::make('Fecha de nacimiento', 'born_date')
         ];
+    }
+
+    public function getOperator()
+    {
+        $options = [];
+        $operators = \App\User::where('type_user_id', 1)->get(['id', 'name']);
+
+        foreach ($operators as $operator) {
+            $options[$operator->id] = $operator->name;
+        }
+
+        return $options;
     }
 
     /**

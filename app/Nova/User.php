@@ -16,15 +16,19 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\User';
+    public static $model = 'App\User';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    //public static $title = 'id';
 
+    public function title()
+    {
+        return $this->name;
+    }
     /**
      * The columns that should be searched.
      *

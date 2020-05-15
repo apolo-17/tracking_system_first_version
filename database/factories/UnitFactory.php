@@ -16,7 +16,7 @@ $factory->define(Unit::class, function (Faker $faker) {
     $trademark = ['VOLKSWAGEN', 'TOYOTA', 'RAM', 'FORD', 'CHEVROLET', 'FIAT', 'ISUZU', 'RENAULT', 'PEUGEOT', 'FAW', 'MERCEDES BENZ', 'NISSAN'];
 
     return [
-        'name' => array_rand($name_unit, 1),
+        'name' => $name_unit[array_rand($name_unit, 1)],
         'licence_plate' => substr(str_shuffle($permitted_chars_to_licence_plate), 0, 6),
         'type_unit_id' => TypeUnit::inRandomOrder()->first()->id,
         'model' => $models_date_year[array_rand($models_date_year, 1)],
