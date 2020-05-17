@@ -13,7 +13,7 @@ class CreateClientUnitsTable extends Migration
      */
     public function up()
     {
-        Schema::create('client_units', function (Blueprint $table) {
+        Schema::create('client_unit', function (Blueprint $table) {
             $table->id();
 
             $table->bigInteger('client_id')->unsigned();
@@ -22,7 +22,7 @@ class CreateClientUnitsTable extends Migration
             $table->bigInteger('unit_id')->unsigned();
             $table->foreign('unit_id')->references('id')->on('units');
 
-            $table->boolean('confirmed');
+            $table->boolean('confirmed')->nullable();
             $table->timestamps();
         });
     }

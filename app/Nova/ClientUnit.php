@@ -4,26 +4,24 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Client extends Resource
+class ClientUnit extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Client';
+    public static $model = \App\ClientUnit::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
      *
      * @var string
      */
-    public static $title = 'name';
+    public static $title = 'id';
 
     /**
      * The columns that should be searched.
@@ -31,42 +29,8 @@ class Client extends Resource
      * @var array
      */
     public static $search = [
-        'id', 'name', 'company'
+        'id',
     ];
-
-    /**
-     * The logical group associated with the resource.
-     *
-     * @var string
-     */
-    public static $group = 'Empresas';
-
-    /**
-     * Indicates if the resoruce should be globally searchable.
-     *
-     * @var bool
-     */
-    public static $globallySearchable = true;
-
-    /**
-     * Get the displayable label of the resource.
-     *
-     * @return string
-     */
-    public static function label()
-    {
-        return 'Clientes';
-    }
-
-    /**
-     * Get the displayable singular label of the resource.
-     *
-     * @return string
-     */
-    public static function singularLabel()
-    {
-        return 'Cliente';
-    }
 
     /**
      * Get the fields displayed by the resource.
@@ -77,15 +41,9 @@ class Client extends Resource
     public function fields(Request $request)
     {
         return [
-
-            BelongsTo::make('Usuario', 'user', User::class)->searchable()->hideFromIndex(),
-            Text::make('Nombre', 'name'),
-            Text::make('Compañia', 'company'),
-            Text::make('RFC', 'rfc'),
-            Text::make('Direccion', 'address')->hideFromIndex(),
-            Text::make('Telefono', 'phone'),
-
-            BelongsToMany::make('Unidades', 'units', Unit::class)
+            ID::make()->sortable(),
+            BelongsTo::make('Cliente', 'client', Client::class),
+            BelongsTo::make('Unidad', 'unit', Unit::class)
         ];
     }
 

@@ -22,7 +22,7 @@ class CreateOperatorUnitsPivotTable extends Migration
             $table->bigInteger('unit_id')->unsigned();
             $table->foreign('unit_id')->references('id')->on('units');
 
-            $table->boolean('confirmed');
+            $table->boolean('confirmed')->nullable();
 
             $table->timestamps();
         });

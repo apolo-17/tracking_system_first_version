@@ -10,4 +10,9 @@ class Client extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function units()
+    {
+        return $this->belongsToMany(Unit::class);
+    }
 }
