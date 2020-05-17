@@ -15,4 +15,14 @@ class Unit extends Model
     {
         return $this->belongsTo(TypeUnit::class);
     }
+
+    public function operator()
+    {
+        return $this->belongsToMany(Operator::class);
+    }
+
+    public function operators()
+    {
+        return $this->belongsTo(OperatorUnit::class);
+    }
 }

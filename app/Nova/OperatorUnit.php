@@ -4,6 +4,8 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -42,9 +44,11 @@ class OperatorUnit extends Resource
     public function fields(Request $request)
     {
         return [
-            ID::make()->sortable(),
-            BelongsTo::make('Seleccione operador', 'operator', Operator::class),
-            BelongsTo::make('Seleccione unidad', 'unit', Unit::class)->searchable()
+            BelongsTo::make('Unidad', 'unit', Unit::class),
+            BelongsTo::make('Operador', 'operator', Operator::class),
+            Boolean::make('Activo', 'confirmed')
+                ->trueValue(true)
+                ->falseValue(false),
         ];
     }
 

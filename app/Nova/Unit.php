@@ -4,6 +4,9 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -76,12 +79,12 @@ class Unit extends Resource
     public function fields(Request $request)
     {
         return [
-            // BelongsTo::make('Operador', 'user', User::class)->searchable(),
             Text::make('Nombre de la unidad', 'name'),
             Text::make('Placas/Matricula', 'licence_plate')->rules('required'),
             BelongsTo::make('Tipo de unidad', 'typeUnit', TypeUnit::class),
             Text::make('Modelo', 'model'),
             Text::make('Marca', 'trademark'),
+            BelongsToMany::make('Operador', 'operator', Operator::class)
         ];
     }
 

@@ -19,6 +19,11 @@ class Operator extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function units()
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
     public function getNameAttribute()
     {
         return $this->user->name;

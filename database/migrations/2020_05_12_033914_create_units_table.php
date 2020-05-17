@@ -15,6 +15,8 @@ class CreateUnitsTable extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('operator_id')->unsigned()->nullable();
+            $table->foreign('operator_id')->references('id')->on('operators');
 
             $table->string('name');
             $table->string('licence_plate')->unique();
