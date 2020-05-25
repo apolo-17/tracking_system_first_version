@@ -34,6 +34,6 @@ class CreateClientUnitsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('client_units');
+        Schema::dropIfExists('client_unit');
     }
 }
